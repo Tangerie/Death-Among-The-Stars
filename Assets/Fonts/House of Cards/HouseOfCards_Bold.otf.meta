@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 99ea3ba6eb6ba53498a537b74b703052
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - House of cards
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 00a81f0e6510b4b46ab53d842087ae2b, type: 3}
+  - {fileID: 12800000, guid: 073be74f5cf14bc4eabf433426b061af, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
