@@ -26,9 +26,16 @@ public class ExamplePlayerController : MonoBehaviour
 
     private Player player;
 
+    private Light torchLight;
+    private float torchIntensity;
+
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+
+        torchLight = playerCamera.GetComponentInChildren<Light>();
+        torchIntensity = torchLight.intensity;
+        torchLight.intensity = 0;
 
         // Lock cursor
         Cursor.lockState = CursorLockMode.Locked;
@@ -79,6 +86,18 @@ public class ExamplePlayerController : MonoBehaviour
             rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, player.GetAxis("Look Horizontal") * lookSpeed, 0);
+        }
+
+        if(player.GetButtonDown("Torch")) {
+            if(torchLight.intensity == 0) {
+                LeanTween.value(torchLight.gameObject, (intensity) => {
+                    torchLight.intensity = intensity;
+                }, 0, torchIntensity, 0.2f);
+            } else {
+                LeanTween.value(torchLight.gameObject, (intensity) => {
+                    torchLight.intensity = intensity;
+                }, torchIntensity, 0, 0.2f);
+            }
         }
     }
 }

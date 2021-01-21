@@ -18,10 +18,13 @@ public class Universe : MonoBehaviour
 
         PlayerObject = FindObjectOfType<ExamplePlayerController>().gameObject;
         RewiredPlayer = ReInput.players.GetPlayer(0);
+        ChoiceController = FindObjectOfType<StoryChoiceController>();
     }
 
     public Player RewiredPlayer;
     public GameObject PlayerObject;
+
+    public StoryChoiceController ChoiceController;
 
     public bool isPaused = false;
 
