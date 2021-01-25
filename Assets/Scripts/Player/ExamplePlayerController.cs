@@ -44,7 +44,7 @@ public class ExamplePlayerController : MonoBehaviour
         player = Universe.Instance.RewiredPlayer;
     }
 
-    void Update()
+    void LateUpdate()
     {
         if(Universe.Instance.isPaused) {
             return;

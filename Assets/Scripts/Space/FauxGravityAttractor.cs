@@ -1,0 +1,24 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class FauxGravityAttractor : MonoBehaviour
+{
+
+    public float surfaceAcceleration = 10f;
+    public float surfaceRadius = 100f;
+
+    public float mass {get {
+        return (surfaceAcceleration * surfaceRadius) / (float)Universe.BIG_G;
+    }}
+
+    private void Awake() {
+        Universe.Instance.FauxGravityAttractors.Add(this);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+}

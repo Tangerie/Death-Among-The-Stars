@@ -5,6 +5,8 @@ using Rewired;
 
 public class Universe : MonoBehaviour
 {
+    public const double BIG_G = 6.673;
+    
     public static Universe Instance;
 
     private void Awake() {
@@ -16,9 +18,10 @@ public class Universe : MonoBehaviour
             return;
         }
 
-        PlayerObject = FindObjectOfType<ExamplePlayerController>().gameObject;
+        PlayerObject = FindObjectOfType<RigidbodyPlayerController>().gameObject;
         RewiredPlayer = ReInput.players.GetPlayer(0);
         ChoiceController = FindObjectOfType<StoryChoiceController>();
+        FauxGravityAttractors = new List<FauxGravityAttractor>();
     }
 
     public Player RewiredPlayer;
@@ -27,6 +30,8 @@ public class Universe : MonoBehaviour
     public StoryChoiceController ChoiceController;
 
     public bool isPaused = false;
+
+    public List<FauxGravityAttractor> FauxGravityAttractors;
 
     public void SetPause(bool pause) {
         isPaused = pause;

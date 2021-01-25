@@ -10,14 +10,11 @@ public class PlayerInteractor : MonoBehaviour
     private GameObject currentHit = null;
 
     private InteractableBase currentInteractable = null;
-    public Animator CursorAnimator;
 
     public TextMeshProUGUI interactText;
 
-    [SerializeField]
-    private GameObject toolTipBack;
-    [SerializeField]
-    private GameObject outerCursor;
+    public GameObject toolTipBack;
+    public GameObject outerCursor;
 
     private Player player;
 
