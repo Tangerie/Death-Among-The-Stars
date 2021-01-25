@@ -11,9 +11,11 @@ public class FauxGravityBody : MonoBehaviour
     public const float ROTATION_SPEED = 100.0f;
 
     public bool doesAlignWithGravity = true;
+    public float alignMinAcceleration = 1f;
 
     private void Awake() {
         rigidbody = GetComponent<Rigidbody>();
+        Universe.Instance.FauxGravityBodies.Add(this);
     }
 
     // Update is called once per frame
@@ -34,7 +36,7 @@ public class FauxGravityBody : MonoBehaviour
             }
         }   
 
-        if(closestBody != null && doesAlignWithGravity) {
+        if(closestBody != null && doesAlignWithGravity && largestAcc.sqrMagnitude > alignMinAcceleration * alignMinAcceleration) {
             //transform.up = -largestAcc.normalized;
             Quaternion newRot = Quaternion.FromToRotation(transform.up, -largestAcc.normalized) * transform.rotation;
             transform.rotation = Quaternion.RotateTowards(transform.rotation, newRot, ROTATION_SPEED * Time.deltaTime);

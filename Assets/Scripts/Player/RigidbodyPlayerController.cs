@@ -57,12 +57,15 @@ public class RigidbodyPlayerController : MonoBehaviour
             float inputX = Universe.Instance.RewiredPlayer.GetAxis("Horizontal");
             float inputY = Universe.Instance.RewiredPlayer.GetAxis("Vertical");
             
-            Vector3 moveDir = new Vector3(inputX,0, inputY).normalized;
+            Vector3 moveDir = new Vector3(inputX, 0, inputY);
+            if(moveDir.sqrMagnitude > 1) {
+                moveDir.Normalize();
+            }
             Vector3 targetMoveAmount = moveDir * walkSpeed;
-            moveAmount = Vector3.SmoothDamp(moveAmount,targetMoveAmount, ref smoothMoveVelocity,.15f);
+            moveAmount = targetMoveAmount; //Vector3.SmoothDamp(moveAmount, targetMoveAmount, ref smoothMoveVelocity,.15f);
             
             // Jump
-            if (Input.GetButtonDown("Jump")) {
+            if (Universe.Instance.RewiredPlayer.GetButtonDown("Jump")) {
                 if (grounded) {
                     rigidbody.AddForce(transform.up * jumpForce);
                 }
@@ -97,7 +100,7 @@ public class RigidbodyPlayerController : MonoBehaviour
 	void FixedUpdate() {
         if (canMove)
         {
-		// Apply movement to rigidbody
+		    // Apply movement to rigidbody
             Vector3 localMove = transform.TransformDirection(moveAmount) * Time.fixedDeltaTime;
             rigidbody.MovePosition(rigidbody.position + localMove);
         }

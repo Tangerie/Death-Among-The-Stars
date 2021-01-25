@@ -22,6 +22,7 @@ public class Universe : MonoBehaviour
         RewiredPlayer = ReInput.players.GetPlayer(0);
         ChoiceController = FindObjectOfType<StoryChoiceController>();
         FauxGravityAttractors = new List<FauxGravityAttractor>();
+        FauxGravityBodies = new List<FauxGravityBody>();
     }
 
     public Player RewiredPlayer;
@@ -32,6 +33,7 @@ public class Universe : MonoBehaviour
     public bool isPaused = false;
 
     public List<FauxGravityAttractor> FauxGravityAttractors;
+    public List<FauxGravityBody> FauxGravityBodies;
 
     public void SetPause(bool pause) {
         isPaused = pause;
